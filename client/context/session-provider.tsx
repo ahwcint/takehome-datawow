@@ -1,5 +1,6 @@
 "use client";
 
+import { verifyToken } from "@/lib/auth";
 import { getToken } from "@/lib/getToken";
 import {
   createContext,
@@ -10,7 +11,10 @@ import {
 } from "react";
 
 type Session = {
-  alive: boolean;
+  user: {
+    username: string;
+    id: string;
+  } | null;
 };
 
 type SessionContextType = {
@@ -22,11 +26,17 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
 export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const [session, setSession] = useState<Session>({
-    alive: false,
+    user: null,
   });
 
   useEffect(() => {
-    getToken().then((t) => setSession({ alive: !!t }));
+    getToken().then(async (t) => {
+      const validToken = await verifyToken(t || "");
+      let user = null;
+      if (validToken)
+        user = { id: validToken.sub, username: validToken.username };
+      setSession({ user });
+    });
   }, []);
   return (
     <SessionContext.Provider value={{ session, setSession }}>

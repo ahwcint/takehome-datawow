@@ -18,8 +18,8 @@ export default function SignInBtn({
     if (redirect) return router.replace("/auth");
 
     if (username)
-      signInApi({ username: username }).then((t) => {
-        setSession({ alive: !!t });
+      signInApi({ username: username }).then((user) => {
+        setSession({ user });
         router.replace("/dashboard");
       });
   };

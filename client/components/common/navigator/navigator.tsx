@@ -15,7 +15,7 @@ export default function Navigator({ children }: PropsWithChildren) {
       {!isAuthPage && (
         <header className="bg-main-1 h-[3rem] shrink-0 flex items-center px-4">
           <p className="text-base-2">A Board</p>
-          {!session.alive && (
+          {!session.user && (
             <div className="w-[5rem] ml-auto">
               <SignInBtn redirect username={undefined} />
             </div>

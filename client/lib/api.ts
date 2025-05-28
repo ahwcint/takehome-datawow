@@ -14,6 +14,7 @@ export const apiHandler = async <
   TResponse = {
     data: unknown;
     errors: unknown;
+    message: string;
     path: string;
     success: boolean;
     timestamp: Date;

@@ -16,6 +16,8 @@ export const createPost = async (payload: {
 export const listPostApi = async (payload: {
   page: number;
   pageSize: number;
+  search: string;
+  community: string;
 }) => {
   const res = await apiHandler({
     url: "post/list",

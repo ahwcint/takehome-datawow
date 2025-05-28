@@ -42,7 +42,7 @@ export default function ModalCreatePost({
         toast.success("Create post success");
         handleClose();
       } else {
-        toast.error("Something went wrong");
+        toast.error(e.message || "Something went wrong");
       }
       setLoading(false);
     });
