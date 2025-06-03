@@ -7,6 +7,7 @@ import {
 import { validate } from 'src/utils/utils';
 import { PostService } from './post.service';
 import { Ctx, CurrentCtx } from 'src/decorators/current-ctx.decorator';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('post')
 export class PostController {
@@ -14,9 +15,7 @@ export class PostController {
 
   @Post('create')
   async create(@Body() body: any, @CurrentCtx() ctx: Ctx) {
-    console.log('body :>> ', body);
     const data = validate(createPostSchema, body);
-    console.log('data :>> ', data);
 
     return await this.postService.createPost({
       ...data,
@@ -24,6 +23,7 @@ export class PostController {
     });
   }
 
+  @Public()
   @Get('list')
   async list(@Query() query: any) {
     const data = validate(listPostSchema, query);

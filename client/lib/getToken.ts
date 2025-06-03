@@ -1,6 +1,7 @@
-"use server";
+'use server';
 
-import { cookies } from "next/headers";
+import { cookies } from 'next/headers';
 
-export const getToken = async () =>
-  (await cookies()).get("token")?.value || null;
+export const getToken = async () => {
+  return (await cookies()).get('token')?.value || '';
+};

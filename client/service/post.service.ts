@@ -1,4 +1,4 @@
-import { apiHandler } from "@/lib/api";
+import { apiHandler } from '@/lib/api';
 
 export const createPost = async (payload: {
   title: string;
@@ -6,8 +6,8 @@ export const createPost = async (payload: {
   community: string;
 }) => {
   const res = await apiHandler({
-    method: "post",
-    url: "post/create",
+    method: 'post',
+    url: 'post/create',
     data: payload,
   });
   return res;
@@ -20,7 +20,7 @@ export const listPostApi = async (payload: {
   community: string;
 }) => {
   const res = await apiHandler({
-    url: "post/list",
+    url: 'post/list',
     params: payload,
   });
   return res;

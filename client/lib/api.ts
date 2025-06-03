@@ -1,6 +1,6 @@
-import api from "./axios";
+import api from './axios';
 
-type Method = "get" | "post" | "put" | "patch" | "delete";
+type Method = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 interface ApiHandlerOptions<TBody = unknown> {
   url: string;
@@ -19,12 +19,12 @@ export const apiHandler = async <
     success: boolean;
     timestamp: Date;
   },
-  TBody = unknown
+  TBody = unknown,
 >(
-  options: ApiHandlerOptions<TBody>
+  options: ApiHandlerOptions<TBody>,
 ): Promise<TResponse> => {
   try {
-    const { url, method = "get", data, params, headers } = options;
+    const { url, method = 'get', data, params, headers } = options;
     const res = await api.request<TResponse>({
       url,
       method,

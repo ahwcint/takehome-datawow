@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   Select,
   SelectContent,
@@ -6,8 +6,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 type Prop = {
   value?: string;
@@ -24,8 +24,8 @@ export default function SelectCustom(props: Prop) {
     <Select value={props.value} onValueChange={props.onChange}>
       <SelectTrigger
         className={cn(
-          "w-[180px] border-0 shadow-none cursor-pointer hover:bg-base-5 font-bold",
-          props.className
+          'w-[180px] border-0 shadow-none cursor-pointer hover:bg-base-5 font-bold',
+          props.className,
         )}
       >
         <SelectValue placeholder={props.placeholder} />

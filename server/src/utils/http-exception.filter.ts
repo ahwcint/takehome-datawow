@@ -52,6 +52,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       status = HttpStatus.UNAUTHORIZED;
       message = 'Unauthorized';
       errors = exception;
+      response.clearCookie('token');
     }
 
     console.error('exception', exception);

@@ -13,4 +13,6 @@ export const getPostSchema = z.object({
 export const listPostSchema = z.object({
   page: z.preprocess((v) => Number(v), z.number()),
   pageSize: z.preprocess((v) => Number(v), z.number()),
+  search: z.string().optional(),
+  community: z.string().optional(),
 });

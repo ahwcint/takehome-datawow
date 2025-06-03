@@ -1,18 +1,18 @@
-"use server";
+'use server';
 
-import jwt from "jsonwebtoken";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || "datawow_jwt_key";
+const JWT_SECRET = process.env.JWT_SECRET || 'datawow_jwt_key';
 
-export const verifyToken = async (token: string): Promise<VerifyResponse> => {
+type VerifyResponse = {
+  sub: string;
+  username: string;
+};
+
+export const verifyToken = async (token: string): Promise<VerifyResponse | null> => {
   try {
     return jwt.verify(token, JWT_SECRET) as VerifyResponse;
   } catch {
-    (await cookies()).delete("token");
-    redirect("/");
+    return null;
   }
 };
-
-type VerifyResponse = { sub: string; username: string };

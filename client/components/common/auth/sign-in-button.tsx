@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { useSession } from "@/context/session-provider";
-import { signInApi } from "@/service/user.service";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { useSession } from '@/context/session-provider';
+import { signInApi } from '@/service/user.service';
+import { useRouter } from 'next/navigation';
 
 export default function SignInBtn({
   username,
@@ -15,12 +15,12 @@ export default function SignInBtn({
   const { setSession } = useSession();
   const router = useRouter();
   const handleSingIn = () => {
-    if (redirect) return router.replace("/auth");
+    if (redirect) return router.replace('/auth');
 
     if (username)
       signInApi({ username: username }).then((user) => {
         setSession({ user });
-        router.replace("/dashboard");
+        router.replace('/dashboard');
       });
   };
   return (

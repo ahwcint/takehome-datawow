@@ -22,8 +22,30 @@ export class PostService {
   }
 
   async listPost(param: z.infer<typeof listPostSchema>) {
+    const whereCondition = new Map();
+    const search = param.search?.trim();
+
+    if (param.community) whereCondition.set('community', param.community);
+
+    if (search)
+      whereCondition.set('OR', [
+        {
+          title: {
+            contains: search,
+            mode: 'insensitive',
+          },
+        },
+        {
+          community: {
+            contains: search,
+            mode: 'insensitive',
+          },
+        },
+      ]);
+
     return this.prisma.post.findMany({
-      skip: param.page,
+      where: Object.fromEntries(whereCondition) as object,
+      skip: Math.max(param.page - 1, 0),
       take: param.pageSize,
     });
   }

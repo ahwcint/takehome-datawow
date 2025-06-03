@@ -1,16 +1,8 @@
-"use client";
+'use client';
 
-import { verifyToken } from "@/lib/auth";
-import { getToken } from "@/lib/getToken";
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import { createContext, useContext, useState, ReactNode } from 'react';
 
-type Session = {
+export type Session = {
   user: {
     username: string;
     id: string;
@@ -24,30 +16,21 @@ type SessionContextType = {
 
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
-export const SessionProvider = ({ children }: { children: ReactNode }) => {
-  const [session, setSession] = useState<Session>({
-    user: null,
-  });
-
-  useEffect(() => {
-    getToken().then(async (t) => {
-      const validToken = await verifyToken(t || "");
-      let user = null;
-      if (validToken)
-        user = { id: validToken.sub, username: validToken.username };
-      setSession({ user });
-    });
-  }, []);
+export const SessionProvider = ({
+  children,
+  initialValue,
+}: {
+  children: ReactNode;
+  initialValue: Session;
+}) => {
+  const [session, setSession] = useState<Session>({ user: initialValue.user });
   return (
-    <SessionContext.Provider value={{ session, setSession }}>
-      {children}
-    </SessionContext.Provider>
+    <SessionContext.Provider value={{ session, setSession }}>{children}</SessionContext.Provider>
   );
 };
 
 export const useSession = () => {
   const context = useContext(SessionContext);
-  if (!context)
-    throw new Error("useSession must be used within a SessionProvider");
+  if (!context) throw new Error('useSession must be used within a SessionProvider');
   return context;
 };

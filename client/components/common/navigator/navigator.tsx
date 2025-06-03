@@ -1,15 +1,15 @@
-"use client";
-import { PropsWithChildren } from "react";
-import SignInBtn from "../auth/sign-in-button";
-import { useSession } from "@/context/session-provider";
-import { usePathname } from "next/navigation";
-import Paper from "../paper/paper";
+'use client';
+import { PropsWithChildren } from 'react';
+import SignInBtn from '../auth/sign-in-button';
+import { useSession } from '@/context/session-provider';
+import { usePathname } from 'next/navigation';
+import Paper from '../paper/paper';
 
 export default function Navigator({ children }: PropsWithChildren) {
   const { session } = useSession();
 
   const pathName = usePathname();
-  const isAuthPage = pathName.startsWith("/auth");
+  const isAuthPage = pathName.startsWith('/auth');
   return (
     <>
       {!isAuthPage && (

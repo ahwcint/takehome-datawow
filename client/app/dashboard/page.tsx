@@ -1,5 +1,5 @@
-import Paper from "@/components/common/paper/paper";
-import ListPost from "@/components/common/post/list-post";
+import Paper from '@/components/common/paper/paper';
+import ListPost from '@/components/common/post/list-post';
 
 export default function DashBoardPage() {
   return (

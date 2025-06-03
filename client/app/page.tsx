@@ -1,7 +1,5 @@
-import Paper from "@/components/common/paper/paper";
+import Paper from '@/components/common/paper/paper';
 
 export default function HomePage() {
-  return <Paper>
-    
-  </Paper>;
+  return <Paper></Paper>;
 }
